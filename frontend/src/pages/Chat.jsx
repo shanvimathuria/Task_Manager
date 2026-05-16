@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useApp } from '../context/AppContext'
 import './Chat.css'
-
+import { API_URL } from '../config'
 export default function Chat() {
   const { user, authToken } = useApp()
   const [activeTab, setActiveTab] = useState('personal') // 'personal' or 'team'
@@ -18,9 +18,9 @@ export default function Chat() {
   const [newChatSearch, setNewChatSearch] = useState('')
   const messagesEndRef = useRef(null)
 
-  import { API_URL } from '../config'
+  
 
-const API_BASE = `${API_URL}/api/chat`
+  const API_BASE = `${API_URL}/api/chat`
 
   // Scroll to bottom of messages
   const scrollToBottom = () => {
