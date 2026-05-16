@@ -197,6 +197,7 @@
 .kanban-column__head h2 {
   font-family: var(--font-display);
   font-size: 1rem;
+  color: white;
 }
 
 .kanban-column__head span {
@@ -243,6 +244,7 @@
   font-size: 0.95rem;
   line-height: 1.4;
   margin-bottom: 8px;
+  color: white;
 }
 
 .task-card p {

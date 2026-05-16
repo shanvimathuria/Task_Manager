@@ -4,7 +4,9 @@ import { getTasks } from '../api/tasks'
 
 const AppContext = createContext(null)
 
-const API_BASE = 'http://localhost:8000/api/auth'
+import { API_URL } from '../config'
+
+const API_BASE = `${API_URL}/api/auth`
 
 export function AppProvider({ children }) {
   const [profile, setProfile] = useState(null)
@@ -211,6 +213,9 @@ export function AppProvider({ children }) {
     <AppContext.Provider
       value={{
         profile,
+        user: profile,
+        authToken: token,
+        token,
         isAuthenticated,
         isLoading,
         login,

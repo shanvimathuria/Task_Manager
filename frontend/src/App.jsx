@@ -8,6 +8,7 @@ import Settings from './pages/Settings'
 import Tasks from './pages/Tasks'
 import TeamDashboard from './pages/TeamDashboard'
 import ProjectWorkspace from './pages/ProjectWorkspace'
+import Chat from './pages/Chat'
 import Login from './pages/Login'
 import Register from './pages/Register'
 
@@ -39,6 +40,7 @@ export default function App() {
               <Route path="tasks/:id" element={<Tasks />} />
               <Route path="team" element={<TeamDashboard />} />
               <Route path="analytics" element={<Analytics />} />
+              <Route path="chat" element={<Chat />} />
               <Route path="settings" element={<Settings />} />
             </Route>
           </Route>

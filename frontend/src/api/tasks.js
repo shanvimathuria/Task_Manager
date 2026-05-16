@@ -1,4 +1,6 @@
-const API_BASE = 'http://localhost:8000/api/tasks'
+import { API_URL } from '../config'
+
+const API_BASE = `${API_URL}/api/tasks`
 
 function getHeaders(extraHeaders = {}) {
   const token = localStorage.getItem('token')

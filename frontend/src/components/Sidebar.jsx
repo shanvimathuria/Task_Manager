@@ -9,6 +9,7 @@ const mainNav = [
   { to: '/', label: 'Dashboard', icon: 'dashboard', end: true },
   { to: '/projects', label: 'Projects', icon: 'projects' },
   { to: '/tasks', label: 'My Tasks', icon: 'tasks' },
+  { to: '/chat', label: 'Chat', icon: 'chat' },
   { to: '/team', label: 'Team', icon: 'team' },
 ]
 
