@@ -15,6 +15,22 @@
   flex: 1;
   padding: 32px 40px 48px;
   animation: fadeIn 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.layout__content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* diagonal base + lighter diagonal middle using combined gradients */
+  background-image:
+    linear-gradient(135deg, rgba(18,8,30,0.94) 0%, rgba(44,12,72,0.85) 45%, rgba(18,8,30,0.94) 100%),
+    radial-gradient(ellipse at 66% 34%, rgba(159,122,234,0.14) 0%, rgba(159,122,234,0.08) 18%, rgba(0,0,0,0) 55%);
+  background-blend-mode: overlay, normal;
+  opacity: 0.95;
+  mix-blend-mode: normal;
 }
 
 .layout__mobile-header {
