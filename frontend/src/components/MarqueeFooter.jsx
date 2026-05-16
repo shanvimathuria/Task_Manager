@@ -1,3 +1,4 @@
+import PixelCat from './PixelCat'
 import './MarqueeFooter.css'
 
 const ITEMS = [
@@ -13,10 +14,8 @@ const ITEMS = [
   { text: 'Northwind Workspace — where work flows', emoji: '🌿' },
 ]
 
-// Separator between items
 const SEP = <span className="mq-sep" aria-hidden="true">✦</span>
 
-// Build one full strip — items + separators
 function Strip() {
   return (
     <div className="mq-strip" aria-hidden="true">
@@ -34,14 +33,15 @@ function Strip() {
 export default function MarqueeFooter() {
   return (
     <footer className="mq-footer" role="contentinfo" aria-label="Status marquee">
-      {/* Glow line at top */}
       <div className="mq-glow-line" aria-hidden="true" />
 
       <div className="mq-track">
-        {/* Two identical strips — second one creates the seamless loop */}
         <Strip />
         <Strip />
       </div>
+
+      {/* 🐱 Easter egg — pixel cat sitting on the footer */}
+      <PixelCat />
     </footer>
   )
 }

@@ -18,7 +18,7 @@
 
 .layout__content {
   flex: 1;
-  padding: 28px 36px 24px;
+  padding: 28px 36px 60px; /* extra bottom so content clears the fixed footer */
   animation: fadeIn 0.4s ease;
 }
 
@@ -83,9 +83,9 @@
 @media (max-width: 1024px) {
   .layout__main { margin-left: 0; }
   .layout__mobile-header { display: flex; }
-  .layout__content { padding: 20px 18px 20px; }
+  .layout__content { padding: 20px 18px 60px; }
 }
 
 @media (max-width: 640px) {
-  .layout__content { padding: 16px 14px 16px; }
+  .layout__content { padding: 16px 14px 60px; }
 }

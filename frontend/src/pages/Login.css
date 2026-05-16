@@ -27,6 +27,7 @@
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
+  padding-bottom: 36px; /* clear the fixed footer */
 }
 
 .lp-root {

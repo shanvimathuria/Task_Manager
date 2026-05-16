@@ -1,0 +1,145 @@
+/* ═══════════════════════════════════════════════════
+   PIXEL CAT EASTER EGG
+   Sits on top of the footer, bottom-right corner
+═══════════════════════════════════════════════════ */
+
+.pcat-wrap {
+  position: fixed;       /* fixed so it always sits above the fixed footer */
+  bottom: 36px;          /* exactly on top of the footer */
+  right: 28px;
+  width: 48px;
+  cursor: pointer;
+  user-select: none;
+  z-index: 91;           /* just above the footer */
+  animation: pcat-float 3.2s ease-in-out infinite;
+}
+
+@keyframes pcat-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-5px); }
+}
+
+/* ── Cat SVG ── */
+.pcat-svg {
+  width: 48px;
+  height: 48px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  display: block;
+  filter: drop-shadow(1px 2px 0px rgba(42,37,32,0.35));
+  transition: transform 0.15s ease;
+}
+
+.pcat-wrap:hover .pcat-svg {
+  transform: scale(1.08);
+  filter: drop-shadow(2px 3px 0px rgba(42,37,32,0.45));
+}
+
+/* ── Eye blink ── */
+.pcat-eye {
+  animation: pcat-blink 4s ease-in-out infinite;
+}
+.pcat-eye--r {
+  animation-delay: 0.08s;
+}
+
+@keyframes pcat-blink {
+  0%, 90%, 100% { transform: scaleY(1); transform-origin: center; }
+  94%           { transform: scaleY(0.1); transform-origin: center; }
+}
+
+/* ── Tail wag ── */
+.pcat-tail {
+  transform-origin: 14px 11px;
+  animation: pcat-tail 1.8s ease-in-out infinite;
+}
+
+@keyframes pcat-tail {
+  0%, 100% { transform: rotate(0deg); }
+  30%       { transform: rotate(12deg); }
+  60%       { transform: rotate(-8deg); }
+}
+
+/* ── Speech bubble ── */
+.pcat-bubble {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  right: -4px;
+  width: 220px;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.85) translateY(6px);
+  transform-origin: bottom right;
+  transition:
+    opacity 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pcat-bubble--show {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.pcat-bubble-inner {
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  padding: 9px 12px;
+  box-shadow: 3px 3px 0px var(--ink);
+  position: relative;
+}
+
+/* Pixel-style corner notch */
+.pcat-bubble-inner::before {
+  content: '';
+  position: absolute;
+  top: -2px; left: -2px;
+  width: 6px; height: 6px;
+  background: var(--cream);
+  border-right: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  border-radius: 0 0 4px 0;
+}
+
+.pcat-bubble-text {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+  display: block;
+}
+
+/* Bubble tail pointing down-right */
+.pcat-bubble-tail {
+  position: absolute;
+  bottom: -10px;
+  right: 16px;
+  width: 0;
+  height: 0;
+  /* pixel-style stepped tail using box-shadow */
+  width: 4px;
+  height: 4px;
+  background: var(--ink);
+  box-shadow:
+    0px  4px 0px var(--ink),
+    4px  4px 0px var(--ink),
+    4px  8px 0px var(--ink);
+}
+
+/* Sage accent on hover */
+.pcat-wrap:hover .pcat-bubble-inner {
+  border-color: var(--sage-dark);
+  box-shadow: 3px 3px 0px var(--sage-dark);
+}
+.pcat-wrap:hover .pcat-bubble-tail {
+  background: var(--sage-dark);
+  box-shadow:
+    0px  4px 0px var(--sage-dark),
+    4px  4px 0px var(--sage-dark),
+    4px  8px 0px var(--sage-dark);
+}
+.pcat-wrap:hover .pcat-bubble-inner::before {
+  border-color: var(--sage-dark);
+}
