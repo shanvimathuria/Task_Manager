@@ -11,7 +11,7 @@ const API_BASE = `${API_URL}/api/auth`
 export function AppProvider({ children }) {
   const [profile, setProfile] = useState(null)
   const [token, setToken] = useState(localStorage.getItem('token') || null)
-  const [isAuthenticated, setIsAuthenticated] = useState(!!token)
+  const [isAuthenticated, setIsAuthenticated] = useState(false) // always false until /me confirms
   const [isLoading, setIsLoading] = useState(true)
 
   const [theme, setTheme] = useState('dark')
@@ -99,11 +99,17 @@ export function AppProvider({ children }) {
           setProfile(userData)
           setIsAuthenticated(true)
         } else {
-          // Invalid token
-          logout()
+          // Token invalid or expired — clear it
+          localStorage.removeItem('token')
+          setToken(null)
+          setIsAuthenticated(false)
         }
       } catch (error) {
+        // Network error (e.g. Railway cold start) — clear token to be safe
         console.error('Error fetching user:', error)
+        localStorage.removeItem('token')
+        setToken(null)
+        setIsAuthenticated(false)
       } finally {
         setIsLoading(false)
       }
