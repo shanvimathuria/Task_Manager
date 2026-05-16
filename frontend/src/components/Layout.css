@@ -1,3 +1,7 @@
+/* ═══════════════════════════════════════
+   LAYOUT — cream theme
+═══════════════════════════════════════ */
+
 .layout {
   display: flex;
   min-height: 100vh;
@@ -9,73 +13,79 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 .layout__content {
   flex: 1;
-  padding: 32px 40px 48px;
-  animation: fadeIn 0.5s ease;
+  padding: 28px 36px 24px;
+  animation: fadeIn 0.4s ease;
 }
 
+/* ── Mobile header ── */
 .layout__mobile-header {
   display: none;
   align-items: center;
-  gap: 16px;
-  padding: 16px 20px;
-  border-bottom: 1.5px solid rgba(159, 122, 234, 0.2);
-  background: linear-gradient(90deg, rgba(22, 10, 38, 0.88), rgba(30, 15, 56, 0.82));
-  backdrop-filter: blur(16px);
+  gap: 14px;
+  padding: 14px 18px;
+  background-color: var(--cream-dark);
+  background-image: var(--grid-bg);
+  background-size: var(--grid-size);
+  border-bottom: 2px solid var(--cream-border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
 
 .layout__mobile-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
 }
 
 .layout__mobile-logo {
   width: 26px;
   height: 26px;
   flex-shrink: 0;
+  border-radius: 7px;
+}
+
+.layout__mobile-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--ink);
+  letter-spacing: -0.02em;
 }
 
 .layout__menu-btn {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
   padding: 8px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--cream-border);
+  background: #fff;
+  transition: all var(--transition);
 }
-
+.layout__menu-btn:hover {
+  border-color: var(--sage);
+  background: var(--sage-pale);
+}
 .layout__menu-btn span {
   display: block;
-  width: 20px;
+  width: 18px;
   height: 2px;
-  background: var(--text-primary);
+  background: var(--ink);
   border-radius: 1px;
 }
 
-.layout__mobile-title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.125rem;
-}
-
 @media (max-width: 1024px) {
-  .layout__main {
-    margin-left: 0;
-  }
-
-  .layout__mobile-header {
-    display: flex;
-  }
-
-  .layout__content {
-    padding: 24px 20px 40px;
-  }
+  .layout__main { margin-left: 0; }
+  .layout__mobile-header { display: flex; }
+  .layout__content { padding: 20px 18px 20px; }
 }
 
 @media (max-width: 640px) {
-  .layout__content {
-    padding: 20px 16px 32px;
-  }
+  .layout__content { padding: 16px 14px 16px; }
 }

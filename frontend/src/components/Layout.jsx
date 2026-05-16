@@ -5,6 +5,7 @@ import Sidebar from './Sidebar'
 import CursorGlow from './CursorGlow'
 import ToastNotifications from './ToastNotifications'
 import NorthwindLogo from './NorthwindLogo'
+import MarqueeFooter from './MarqueeFooter'
 import './Layout.css'
 
 export default function Layout() {
@@ -39,6 +40,7 @@ export default function Layout() {
         <main className="layout__content">
           <Outlet />
         </main>
+        <MarqueeFooter />
       </div>
     </div>
   )

@@ -1,18 +1,31 @@
-import { useId } from 'react'
-
 export default function NorthwindLogo({ className = '' }) {
-  const gradientId = useId()
-
   return (
-    <svg className={className} viewBox="0 0 40 40" role="img" aria-label="Northwind logo" fill="none">
-      <rect x="4" y="4" width="32" height="32" rx="10" fill={`url(#${gradientId})`} />
-      <path d="M12 24V13.5L20 24V13.5" stroke="white" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M25 13.5L28 20L25 26.5" stroke="white" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="20" cy="20" r="15" stroke="rgba(255,255,255,0.14)" strokeWidth="1.2" />
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+      fill="none"
+      role="img"
+      aria-label="Northwind Workspace logo"
+    >
+      <rect width="32" height="32" rx="8" fill="#141414"/>
+      <rect width="32" height="32" rx="8" fill="url(#nw-logo-g)"/>
+      <path
+        d="M16 8l6 3v6l-6 3-6-3v-6l6-3z"
+        stroke="#0c0c0c"
+        strokeWidth="1.5"
+        fill="rgba(0,0,0,0.15)"
+      />
+      <path
+        d="M16 14v4M14 16h4"
+        stroke="#0c0c0c"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
       <defs>
-        <linearGradient id={gradientId} x1="8" y1="8" x2="32" y2="32" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#9f7aea" />
-          <stop offset="1" stopColor="#6d28d9" />
+        <linearGradient id="nw-logo-g" x1="0" y1="0" x2="32" y2="32">
+          <stop stopColor="#98A88C"/>
+          <stop offset="1" stopColor="#6a7a62"/>
         </linearGradient>
       </defs>
     </svg>
