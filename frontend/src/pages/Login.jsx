@@ -4,6 +4,10 @@ import { useGoogleLogin } from '@react-oauth/google'
 import { useApp } from '../context/AppContext'
 import './Login.css'
 
+const GOOGLE_ENABLED =
+  import.meta.env.VITE_GOOGLE_CLIENT_ID &&
+  import.meta.env.VITE_GOOGLE_CLIENT_ID !== 'YOUR_GOOGLE_CLIENT_ID_HERE'
+
 // The Northwind logo extracted from favicon.svg
 function NorthwindLogo({ size = 32 }) {
   return (
@@ -128,6 +132,14 @@ export default function Login() {
     onError: () => setError('Google sign-in was cancelled or failed.'),
   })
 
+  const triggerGoogle = () => {
+    if (!GOOGLE_ENABLED) {
+      setError('Google sign-in is not configured yet.')
+      return
+    }
+    handleGoogle()
+  }
+
   return (
     <div className="lp-root">
       {/* ══════════ LEFT — 70% showcase ══════════ */}
@@ -200,7 +212,7 @@ export default function Login() {
           <button
             type="button"
             className={`lp-google-btn ${googleLoading ? 'lp-google-btn--loading' : ''}`}
-            onClick={() => handleGoogle()}
+            onClick={triggerGoogle}
             disabled={googleLoading || loading}
           >
             {googleLoading ? (

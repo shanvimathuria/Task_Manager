@@ -13,6 +13,14 @@ import Chat from './pages/Chat'
 import Login from './pages/Login'
 import Register from './pages/Register'
 
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID
+
+// Only pass a real client ID — an empty/placeholder string makes the provider throw
+const googleClientId =
+  GOOGLE_CLIENT_ID && GOOGLE_CLIENT_ID !== 'YOUR_GOOGLE_CLIENT_ID_HERE'
+    ? GOOGLE_CLIENT_ID
+    : 'placeholder-disabled'
+
 function ProtectedRoute() {
   const { isAuthenticated, isLoading } = useApp()
 
@@ -25,7 +33,7 @@ function ProtectedRoute() {
         justifyContent: 'center',
         background: '#100816',
         color: 'rgba(244,239,255,0.4)',
-        fontFamily: 'var(--font-body)',
+        fontFamily: 'DM Sans, system-ui, sans-serif',
         fontSize: '0.9rem',
         letterSpacing: '0.05em',
       }}>
@@ -37,16 +45,17 @@ function ProtectedRoute() {
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />
 }
 
-// Redirect already-authenticated users away from login/register
+// Show children while loading (so login page is visible immediately),
+// redirect to dashboard only once auth is confirmed
 function PublicRoute({ children }) {
   const { isAuthenticated, isLoading } = useApp()
-  if (isLoading) return null
+  if (isLoading) return children
   return isAuthenticated ? <Navigate to="/" replace /> : children
 }
 
 export default function App() {
   return (
-    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID || ''}>
+    <GoogleOAuthProvider clientId={googleClientId}>
       <AppProvider>
         <BrowserRouter>
           <Routes>

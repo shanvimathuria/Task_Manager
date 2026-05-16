@@ -5,6 +5,10 @@ import { useApp } from '../context/AppContext'
 import './Login.css'
 import './Register.css'
 
+const GOOGLE_ENABLED =
+  import.meta.env.VITE_GOOGLE_CLIENT_ID &&
+  import.meta.env.VITE_GOOGLE_CLIENT_ID !== 'YOUR_GOOGLE_CLIENT_ID_HERE'
+
 function NorthwindLogo({ size = 32 }) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" width={size} height={size}>
@@ -79,6 +83,14 @@ export default function Register() {
     onError: () => setError('Google sign-in was cancelled or failed.'),
   })
 
+  const triggerGoogle = () => {
+    if (!GOOGLE_ENABLED) {
+      setError('Google sign-in is not configured yet.')
+      return
+    }
+    handleGoogle()
+  }
+
   return (
     <div className="lp-root">
       {/* ══════════ LEFT — 70% showcase ══════════ */}
@@ -144,7 +156,7 @@ export default function Register() {
           <button
             type="button"
             className={`lp-google-btn ${googleLoading ? 'lp-google-btn--loading' : ''}`}
-            onClick={() => handleGoogle()}
+            onClick={triggerGoogle}
             disabled={googleLoading || loading}
           >
             {googleLoading ? (
