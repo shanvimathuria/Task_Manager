@@ -17,10 +17,31 @@ function ProtectedRoute() {
   const { isAuthenticated, isLoading } = useApp()
 
   if (isLoading) {
-    return <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Loading...</div>
+    return (
+      <div style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: '#100816',
+        color: 'rgba(244,239,255,0.4)',
+        fontFamily: 'var(--font-body)',
+        fontSize: '0.9rem',
+        letterSpacing: '0.05em',
+      }}>
+        Loading…
+      </div>
+    )
   }
 
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />
+}
+
+// Redirect already-authenticated users away from login/register
+function PublicRoute({ children }) {
+  const { isAuthenticated, isLoading } = useApp()
+  if (isLoading) return null
+  return isAuthenticated ? <Navigate to="/" replace /> : children
 }
 
 export default function App() {
@@ -29,9 +50,9 @@ export default function App() {
       <AppProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            
+            <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+            <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+
             <Route element={<ProtectedRoute />}>
               <Route path="/" element={<Layout />}>
                 <Route index element={<Dashboard />} />
@@ -46,6 +67,9 @@ export default function App() {
                 <Route path="settings" element={<Settings />} />
               </Route>
             </Route>
+
+            {/* Catch-all → login */}
+            <Route path="*" element={<Navigate to="/login" replace />} />
           </Routes>
         </BrowserRouter>
       </AppProvider>
