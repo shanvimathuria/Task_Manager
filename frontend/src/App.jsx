@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 import { AppProvider, useApp } from './context/AppContext'
 import Layout from './components/Layout'
 import Dashboard from './pages/Dashboard'
@@ -24,28 +25,30 @@ function ProtectedRoute() {
 
 export default function App() {
   return (
-    <AppProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          
-          <Route element={<ProtectedRoute />}>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Dashboard />} />
-              <Route path="projects" element={<Projects />} />
-              <Route path="projects/:id" element={<Projects />} />
-              <Route path="projects/:id/workspace" element={<ProjectWorkspace />} />
-              <Route path="tasks" element={<Tasks />} />
-              <Route path="tasks/:id" element={<Tasks />} />
-              <Route path="team" element={<TeamDashboard />} />
-              <Route path="analytics" element={<Analytics />} />
-              <Route path="chat" element={<Chat />} />
-              <Route path="settings" element={<Settings />} />
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID || ''}>
+      <AppProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            
+            <Route element={<ProtectedRoute />}>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<Dashboard />} />
+                <Route path="projects" element={<Projects />} />
+                <Route path="projects/:id" element={<Projects />} />
+                <Route path="projects/:id/workspace" element={<ProjectWorkspace />} />
+                <Route path="tasks" element={<Tasks />} />
+                <Route path="tasks/:id" element={<Tasks />} />
+                <Route path="team" element={<TeamDashboard />} />
+                <Route path="analytics" element={<Analytics />} />
+                <Route path="chat" element={<Chat />} />
+                <Route path="settings" element={<Settings />} />
+              </Route>
             </Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </AppProvider>
+          </Routes>
+        </BrowserRouter>
+      </AppProvider>
+    </GoogleOAuthProvider>
   )
 }

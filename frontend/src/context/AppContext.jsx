@@ -187,6 +187,37 @@ export function AppProvider({ children }) {
     }
   }
 
+  const googleLogin = async (accessToken) => {
+    try {
+      const res = await fetch(`${API_BASE}/google`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: accessToken }),
+      })
+      const data = await res.json()
+      if (res.ok) {
+        setToken(data.access_token)
+        localStorage.setItem('token', data.access_token)
+        const userRes = await fetch(`${API_BASE}/me`, {
+          headers: { 'Authorization': `Bearer ${data.access_token}` },
+        })
+        if (userRes.ok) {
+          const userData = await userRes.json()
+          setProfile(userData)
+        }
+        setIsAuthenticated(true)
+        addToast('Signed in with Google', 'success')
+        return true
+      } else {
+        addToast(data.detail || 'Google sign-in failed', 'warning')
+        return false
+      }
+    } catch (err) {
+      addToast('Network error during Google sign-in', 'warning')
+      return false
+    }
+  }
+
   const logout = useCallback(() => {
     setToken(null)
     setProfile(null)
@@ -220,6 +251,7 @@ export function AppProvider({ children }) {
         isLoading,
         login,
         register,
+        googleLogin,
         logout,
         theme,
         accentIntensity,

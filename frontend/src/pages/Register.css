@@ -1,0 +1,41 @@
+/* Register-specific additions */
+
+.reg-perks {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.2vh, 13px);
+}
+
+.reg-perk {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reg-perk-icon {
+  font-size: 1.1rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: rgba(152, 168, 140, 0.07);
+  border: 1px solid rgba(152, 168, 140, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.reg-perk-text {
+  font-size: clamp(0.78rem, 0.9vw, 0.86rem);
+  color: var(--text-secondary);
+}
+
+/* Green-tinted submit for register */
+.reg-submit {
+  background: linear-gradient(135deg, #2d5a3d 0%, #4ade80 100%) !important;
+  box-shadow: 0 6px 20px rgba(74, 222, 128, 0.25) !important;
+}
+.reg-submit:hover:not(:disabled) {
+  box-shadow: 0 10px 28px rgba(74, 222, 128, 0.4) !important;
+}
