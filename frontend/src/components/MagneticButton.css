@@ -1,0 +1,58 @@
+.magnetic-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: transform 0.2s ease, background 0.25s ease, border-color 0.25s ease;
+  will-change: transform;
+}
+
+.magnetic-btn--primary {
+  background: linear-gradient(135deg, #7ec8c8 0%, #98a88c 100%);
+  color: #0c0c0c;
+  font-weight: 600;
+}
+
+.magnetic-btn--primary:hover {
+  transform: translateY(-1px);
+}
+
+.magnetic-btn--ghost {
+  background: rgba(126, 200, 200, 0.08);
+  border: 1px solid rgba(126, 200, 200, 0.2);
+  color: #7ec8c8;
+  backdrop-filter: blur(12px);
+  transition: all 0.2s ease;
+}
+
+.magnetic-btn--ghost:hover {
+  border-color: #7ec8c8;
+  background: rgba(126, 200, 200, 0.15);
+}
+
+.magnetic-btn--outline {
+  background: transparent;
+  border: 1px solid var(--border-hairline);
+  color: var(--text-secondary);
+}
+
+.magnetic-btn--outline:hover {
+  border-color: var(--border-sage);
+  color: var(--text-primary);
+}
+
+.magnetic-btn--danger {
+  background: var(--coral-soft);
+  border: 1px solid rgba(201, 138, 122, 0.25);
+  color: #d4a0a0;
+}
+
+.magnetic-btn--icon {
+  padding: 10px;
+  min-width: 40px;
+}

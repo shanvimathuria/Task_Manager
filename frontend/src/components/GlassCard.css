@@ -1,0 +1,28 @@
+.glass-card {
+  background: linear-gradient(135deg, rgba(22, 22, 22, 0.8), rgba(22, 28, 40, 0.75));
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(126, 200, 200, 0.15);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 48px -16px rgba(0, 0, 0, 0.65), 0 0 20px rgba(126, 200, 200, 0.06);
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.glass-card--hover:hover {
+  transform: translateY(-3px);
+  border-color: rgba(126, 200, 200, 0.35);
+  box-shadow: 0 20px 48px -16px rgba(0, 0, 0, 0.65), 0 0 30px rgba(126, 200, 200, 0.12);
+}
+
+.glass-card--gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(152, 168, 140, 0.25), transparent 60%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
