@@ -92,9 +92,10 @@ export default function Register() {
   }
 
   return (
-    <div className="lp-root">
-      {/* ══════════ LEFT — 70% showcase ══════════ */}
-      <div className="lp-showcase">
+    <div className="lp-page">
+      <div className="lp-root">
+        {/* ══════════ LEFT — 70% showcase ══════════ */}
+        <div className="lp-showcase">
         <div className="lp-orb lp-orb-1" ref={el => orbsRef.current[0] = el} />
         <div className="lp-orb lp-orb-2" ref={el => orbsRef.current[1] = el} />
         <div className="lp-orb lp-orb-3" ref={el => orbsRef.current[2] = el} />
@@ -275,6 +276,8 @@ export default function Register() {
             <Link to="/login" className="lp-link">Sign in →</Link>
           </p>
         </div>
+      </div>
+
       </div>
     </div>
   )
